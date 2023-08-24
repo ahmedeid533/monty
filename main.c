@@ -1,4 +1,5 @@
 #include "monty.h"
+#include <stdio.h>
 
 /**
 * main - monty code interpreter
@@ -22,6 +23,7 @@ int main(int argc, char *argv[])
 		exit(EXIT_FAILURE);
 	}
 	file = fopen(argv[1], "r");
+	FILEC = file;
 	if (!file)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
@@ -63,5 +65,64 @@ void def()
 	OPST[6].opcode = "pop";
 	OPST[6].f = popi;
 	OPST[7].opcode = NULL;
-	OPST[6].f = NULL;
+	OPST[7].f = NULL;
+}
+
+/**
+* free_stack - frees a doubly linked list
+* @head: head of the stack
+*/
+void fres(stack_t *head)
+{
+	stack_t *aux;
+
+	aux = head;
+	while (head)
+	{
+		aux = head->next;
+		free(head);
+		head = aux;
+	}
+}
+
+/**
+ * f_swap - adds the top two elements of the stack.
+ * @head: stack head
+ * @counter: line_number
+ * Return: no return
+*/
+void swap(stack_t **head, unsigned int counter)
+{
+	stack_t *h;
+	int len = 0, aux;
+
+	h = *head;
+	while (h)
+	{
+		h = h->next;
+		len++;
+	}
+	if (len < 2)
+	{
+		fprintf(stderr, "L%d: can't swap, stack too short\n", counter);
+		fclose(FILEC);
+		free(CONT);
+		fres(*head);
+		exit(EXIT_FAILURE);
+	}
+	h = *head;
+	aux = h->n;
+	h->n = h->next->n;
+	h->next->n = aux;
+}
+/**
+  *f_nop- nothing
+  *@head: stack head
+  *@counter: line_number
+  *Return: no return
+ */
+void nopi(stack_t **head, unsigned int counter)
+{
+	(void) counter;
+	(void) head;
 }
