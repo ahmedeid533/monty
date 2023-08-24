@@ -14,7 +14,6 @@ int main(int argc, char *argv[])
 	ssize_t read_line = 1;
 	stack_t *stack = NULL;
 
-
 	COUNT = 0;
 	if (argc != 2)
 	{

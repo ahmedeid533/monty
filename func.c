@@ -64,7 +64,7 @@ int execute(char *content, stack_t **stack, FILE *file)
  * @counter: line_number
  * Return: no return
 */
-void f_push(stack_t **head, unsigned int counter)
+void push(stack_t **head, unsigned int counter)
 {
 	int n, j = 0, flag = 0;
 
