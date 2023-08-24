@@ -47,6 +47,7 @@ void swap(stack_t **stack, unsigned int line_number);
 void addi(stack_t **stack, unsigned int line_number);
 void nopi(stack_t **stack, unsigned int line_number);
 void fres(stack_t *head);
+void addnode(stack_t **head, int n);
 int execute(char *content, stack_t **stack, FILE *file);
 extern FILE *FILEC;
 extern char *CONT;
