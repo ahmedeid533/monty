@@ -1,6 +1,9 @@
 #include "monty.h"
-#include <stdio.h>
 
+FILE *FILEC = NULL;
+char *CONT = NULL;
+char *ARG = NULL;
+int COUNT = 0;
 /**
 * main - monty code interpreter
 * @argc: number of arguments
