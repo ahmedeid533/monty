@@ -14,6 +14,7 @@ int main(int argc, char *argv[])
 	ssize_t read_line = 1;
 	stack_t *stack = NULL;
 
+	def();
 	COUNT = 0;
 	if (argc != 2)
 	{
@@ -41,4 +42,26 @@ int main(int argc, char *argv[])
 	fclose(file);
 	return (0);
 }
-	
+/**
+ * def - def
+ * 
+ */
+void def()
+{
+	OPST[0].opcode = "push";
+	OPST[0].f = push;
+	OPST[1].opcode = "pall";
+	OPST[1].f = pall;
+	OPST[2].opcode = "swap";
+	OPST[2].f = swap;
+	OPST[3].opcode = "add";
+	OPST[3].f = addi;
+	OPST[4].opcode = "nop";
+	OPST[4].f = nopi;
+	OPST[5].opcode = "pint";
+	OPST[5].f = pint;
+	OPST[6].opcode = "pop";
+	OPST[6].f = popi;
+	OPST[7].opcode = NULL;
+	OPST[6].f = NULL;
+}

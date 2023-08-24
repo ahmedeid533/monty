@@ -52,16 +52,8 @@ void addnode(stack_t **head, int n);
 int execute(char *content, stack_t **stack, FILE *file);
 extern FILE *FILEC;
 extern char *CONT;
-extern instruction_t OPST[] = {
-				{"push", push},  
-				{"pall", pall},
-				{"swap", swap},
-				{"add", addi},
-				{"nop", nopi},
-				{"pint", pint},
-				{"pop", popi},
-				{NULL, NULL}
-				};
+extern instruction_t OPST[8];
+void def();
 extern char *ARG;
 
 #endif
