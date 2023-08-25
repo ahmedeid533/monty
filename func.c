@@ -31,26 +31,36 @@ void addnode(stack_t **head, int n)
 * @content: line content
 * Return: no return
 */
-int execute(char *content, stack_t **stack, FILE *file)
+int execute(char *content, stack_t **stack, FILE *file, int count)
 {
+	instruction_t opst[] = {
+				{"push", push}, 
+				{"pall", pall}, 
+				{"pint", pint},
+				{"pop", popi},
+				{"swap", swap},
+				{"add", addi},
+				{"nop", nopi},
+				{NULL, NULL}
+				};
 	unsigned int i;
 	char *op;
 
     op = strtok(content, " \n\t");
 	if (op && op[0] == '#')
 		return (0);
-	ARG = strtok(NULL, " \n\t");
-	while (OPST[i].opcode && op)
+	GOLV.ARG = strtok(NULL, " \n\t");
+	while (opst[i].opcode && op)
 	{
-		if (strcmp(op, OPST[i].opcode) == 0)
-		{	OPST[i].f(stack, COUNT);
+		if (strcmp(op, opst[i].opcode) == 0)
+		{	opst[i].f(stack, count);
 			return (0);
 		}
 		i++;
 	}
-	if (op && OPST[i].opcode == NULL)
+	if (op && opst[i].opcode == NULL)
 	{ 
-		fprintf(stderr, "L%d: unknown instruction %s\n", COUNT, op);
+		fprintf(stderr, "L%d: unknown instruction %s\n", count, op);
 		fclose(file);
 		free(content);
 		fres(*stack);
@@ -59,7 +69,7 @@ int execute(char *content, stack_t **stack, FILE *file)
 	return (1);
 }
 /**
- * f_push - add node to the stack
+ * push - add node to the stack
  * @head: stack head
  * @counter: line_number
  * Return: no return
@@ -68,20 +78,20 @@ void push(stack_t **head, unsigned int counter)
 {
 	int n, j = 0, flag = 0;
 
-	if (ARG)
+	if (GOLV.ARG)
 	{
-		if (ARG[0] == '-')
+		if (GOLV.ARG[0] == '-')
 			j++;
-		for (; ARG[j] != '\0'; j++)
+		for (; GOLV.ARG[j] != '\0'; j++)
 		{
-			if (ARG[j] > 57 || ARG[j] < 48)
+			if (GOLV.ARG[j] > 57 || GOLV.ARG[j] < 48)
 				flag = 1; 
 		}
 		if (flag == 1)
 		{
 			fprintf(stderr, "L%d: usage: push integer\n", counter);
-			fclose(FILEC);
-			free(CONT);
+			fclose(GOLV.FILEC);
+			free(GOLV.CONT);
 			fres(*head);
 			exit(EXIT_FAILURE);
 			}
@@ -89,17 +99,17 @@ void push(stack_t **head, unsigned int counter)
 	else
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", counter);
-		fclose(FILEC);
-		free(CONT);
+		fclose(GOLV.FILEC);
+		free(GOLV.CONT);
 		fres(*head);
 		exit(EXIT_FAILURE); 
 	}
-	n = atoi(ARG);
+	n = atoi(GOLV.ARG);
 	addnode(head, n);
 }
 
 /**
- * f_pall - prints the stack
+ * pall - prints the stack
  * @head: stack head
  * @counter: no used
  * Return: no return
@@ -120,7 +130,7 @@ void pall(stack_t **head, unsigned int counter)
 }
 
 /**
- * f_pop - prints the top
+ * popi - prints the top
  * @head: stack head
  * @counter: line_number
  * Return: no return
@@ -132,8 +142,8 @@ void popi(stack_t **head, unsigned int counter)
 	if (*head == NULL)
 	{
 		fprintf(stderr, "L%d: can't pop an empty stack\n", counter);
-		fclose(FILEC);
-		free(CONT);
+		fclose(GOLV.FILEC);
+		free(GOLV.CONT);
 		fres(*head);
 		exit(EXIT_FAILURE);
 	}

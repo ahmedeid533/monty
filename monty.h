@@ -38,7 +38,22 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-extern int COUNT;
+/**
+ * struct gol - variables
+ * @arg: value
+ * @file: pointer to monty file
+ * @content: line content
+ * @lifi: flag change stack <-> queue
+ * Description: carries values through the program
+ */
+typedef struct gol
+{
+	char *ARG;
+	FILE *FILEC;
+	char *CONT;
+}  GOL;
+extern GOL GOLV;
+
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
 void pint(stack_t **stack, unsigned int line_number);
@@ -48,13 +63,7 @@ void addi(stack_t **stack, unsigned int line_number);
 void nopi(stack_t **stack, unsigned int line_number);
 void fres(stack_t *head);
 void addnode(stack_t **head, int n);
-int execute(char *content, stack_t **stack, FILE *file);
-extern FILE *FILEC;
-extern char *CONT;
-extern struct instruction_s OPST[8];
+int execute(char *content, stack_t **stack, FILE *file, int count);
 
-void def();
-
-extern char *ARG;
 
 #endif

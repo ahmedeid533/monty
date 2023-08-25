@@ -1,9 +1,6 @@
 #include "monty.h"
 
-FILE *FILEC = NULL;
-char *CONT = NULL;
-char *ARG = NULL;
-int COUNT = 0;
+GOL GOLV = {NULL, NULL, NULL};
 struct instruction_s OPST[8];
 /**
 * main - monty code interpreter
@@ -18,16 +15,15 @@ int main(int argc, char *argv[])
 	size_t size = 0;
 	ssize_t read_line = 1;
 	stack_t *stack = NULL;
+	int count = 0;
 
-	def();
-	COUNT = 0;
 	if (argc != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
 	file = fopen(argv[1], "r");
-	FILEC = file;
+	GOLV.FILEC = file;
 	if (!file)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
@@ -37,10 +33,10 @@ int main(int argc, char *argv[])
 	{
 		content = NULL;
 		read_line = getline(&content, &size, file);
-		COUNT++;
+		count++;
 		if (read_line > 0)
 		{
-			execute(content, &stack, file);
+			execute(content, &stack, file, count);
 		}
 		free(content);
 	}
@@ -48,32 +44,9 @@ int main(int argc, char *argv[])
 	fclose(file);
 	return (0);
 }
-/**
- * def - def
- * 
- */
-void def()
-{
-	OPST[0].opcode = "push";
-	OPST[0].f = push;
-	OPST[1].opcode = "pall";
-	OPST[1].f = pall;
-	OPST[2].opcode = "swap";
-	OPST[2].f = swap;
-	OPST[3].opcode = "add";
-	OPST[3].f = addi;
-	OPST[4].opcode = "nop";
-	OPST[4].f = nopi;
-	OPST[5].opcode = "pint";
-	OPST[5].f = pint;
-	OPST[6].opcode = "pop";
-	OPST[6].f = popi;
-	OPST[7].opcode = NULL;
-	OPST[7].f = NULL;
-}
 
 /**
-* free_stack - frees a doubly linked list
+* fres - frees a doubly linked list
 * @head: head of the stack
 */
 void fres(stack_t *head)
@@ -90,7 +63,7 @@ void fres(stack_t *head)
 }
 
 /**
- * f_swap - adds the top two elements of the stack.
+ * swap - adds the top two elements of the stack.
  * @head: stack head
  * @counter: line_number
  * Return: no return
@@ -109,8 +82,8 @@ void swap(stack_t **head, unsigned int counter)
 	if (len < 2)
 	{
 		fprintf(stderr, "L%d: can't swap, stack too short\n", counter);
-		fclose(FILEC);
-		free(CONT);
+		fclose(GOLV.FILEC);
+		free(GOLV.CONT);
 		fres(*head);
 		exit(EXIT_FAILURE);
 	}
@@ -120,7 +93,7 @@ void swap(stack_t **head, unsigned int counter)
 	h->next->n = aux;
 }
 /**
-  *f_nop- nothing
+  *nopi - nothing
   *@head: stack head
   *@counter: line_number
   *Return: no return
