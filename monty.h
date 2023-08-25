@@ -50,7 +50,7 @@ typedef struct gol
 	char *ARG;
 	FILE *FILEC;
 	char *CONT;
-}  GOL;
+} GOL;
 extern GOL GOLV;
 
 void push(stack_t **stack, unsigned int line_number);

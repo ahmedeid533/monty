@@ -1,7 +1,6 @@
 #include "monty.h"
 
 GOL GOLV = {NULL, NULL, NULL};
-struct instruction_s OPST[8];
 /**
 * main - monty code interpreter
 * @argc: number of arguments
