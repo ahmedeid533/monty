@@ -51,8 +51,10 @@ void addnode(stack_t **head, int n);
 int execute(char *content, stack_t **stack, FILE *file);
 extern FILE *FILEC;
 extern char *CONT;
-extern instruction_t OPST[8];
+extern struct instruction_s OPST[8];
+
 void def();
+
 extern char *ARG;
 
 #endif

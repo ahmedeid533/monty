@@ -4,6 +4,7 @@ FILE *FILEC = NULL;
 char *CONT = NULL;
 char *ARG = NULL;
 int COUNT = 0;
+struct instruction_s OPST[8];
 /**
 * main - monty code interpreter
 * @argc: number of arguments
