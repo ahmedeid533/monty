@@ -59,7 +59,7 @@ int execute(char *content, stack_t **stack, FILE *file, int count)
 		i++;
 	}
 	if (op && opst[i].opcode == NULL)
-	{ 
+	{
 		fprintf(stderr, "L%d: unknown instruction %s\n", count, op);
 		fclose(file);
 		free(content);
@@ -85,7 +85,7 @@ void push(stack_t **head, unsigned int counter)
 		for (; GOLV.ARG[j] != '\0'; j++)
 		{
 			if (GOLV.ARG[j] > 57 || GOLV.ARG[j] < 48)
-				flag = 1; 
+				flag = 1;
 		}
 		if (flag == 1)
 		{
