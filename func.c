@@ -15,7 +15,7 @@ void addnode(stack_t **head, int n)
 	if (new_node == NULL)
 	{
 		printf("Error\n");
-		exit(0); 
+		exit(0);
 	}
 	if (aux)
 		aux->prev = new_node;
@@ -34,8 +34,8 @@ void addnode(stack_t **head, int n)
 int execute(char *content, stack_t **stack, FILE *file, int count)
 {
 	instruction_t opst[] = {
-				{"push", push}, 
-				{"pall", pall}, 
+				{"push", push},
+				{"pall", pall},
 				{"pint", pint},
 				{"pop", popi},
 				{"swap", swap},
@@ -46,7 +46,7 @@ int execute(char *content, stack_t **stack, FILE *file, int count)
 	unsigned int i;
 	char *op;
 
-    op = strtok(content, " \n\t");
+	op = strtok(content, " \n\t");
 	if (op && op[0] == '#')
 		return (0);
 	GOLV.ARG = strtok(NULL, " \n\t");
@@ -64,7 +64,7 @@ int execute(char *content, stack_t **stack, FILE *file, int count)
 		fclose(file);
 		free(content);
 		fres(*stack);
-		exit(EXIT_FAILURE); 
+		exit(EXIT_FAILURE);
 	}
 	return (1);
 }
@@ -102,7 +102,7 @@ void push(stack_t **head, unsigned int counter)
 		fclose(GOLV.FILEC);
 		free(GOLV.CONT);
 		fres(*head);
-		exit(EXIT_FAILURE); 
+		exit(EXIT_FAILURE);
 	}
 	n = atoi(GOLV.ARG);
 	addnode(head, n);
