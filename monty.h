@@ -40,10 +40,9 @@ typedef struct instruction_s
 
 /**
  * struct gol - variables
- * @arg: value
- * @file: pointer to monty file
- * @content: line content
- * @lifi: flag change stack <-> queue
+ * @ARG: value
+ * @FILEC: pointer to monty file
+ * @CONT: line content
  * Description: carries values through the program
  */
 typedef struct gol
