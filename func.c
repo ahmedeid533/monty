@@ -43,7 +43,7 @@ int execute(char *content, stack_t **stack, FILE *file, unsigned int count)
 				{"nop", nopi},
 				{NULL, NULL}
 				};
-	unsigned int i;
+	unsigned int i = 0;
 	char *op;
 
 	op = strtok(content, " \n\t");
