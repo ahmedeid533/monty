@@ -31,7 +31,7 @@ void addnode(stack_t **head, int n)
 * @content: line content
 * Return: no return
 */
-int execute(char *content, stack_t **stack, FILE *file, int count)
+int execute(char *content, stack_t **stack, FILE *file, unsigned int count)
 {
 	instruction_t opst[] = {
 				{"push", push},

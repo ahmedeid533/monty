@@ -62,7 +62,7 @@ void addi(stack_t **stack, unsigned int line_number);
 void nopi(stack_t **stack, unsigned int line_number);
 void fres(stack_t *head);
 void addnode(stack_t **head, int n);
-int execute(char *content, stack_t **stack, FILE *file, int count);
+int execute(char *content, stack_t **stack, FILE *file, unsigned int count);
 
 
 #endif
