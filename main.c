@@ -33,6 +33,7 @@ int main(int argc, char *argv[])
 	{
 		content = NULL;
 		read_line = getline(&content, &size, file);
+		GOLV.CONT = content;
 		count++;
 		if (read_line > 0)
 		{
